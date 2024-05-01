@@ -1,0 +1,19 @@
+.card {
+    width: 100px;
+    height: 100px;
+}
+
+.front, .back {
+    width: 100px;
+    height: 100px;
+    backface-visibility: hidden;
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.hidden {
+    display: none;
+}

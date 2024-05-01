@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Memory Cards Game Page </title>
+        <link href="../style.css" rel="stylesheet">
+        <link href="memory-cards.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header>
+            <h1> Game Arcade Website </h1>
+        </header>
+        <nav>
+            <ul>
+                <li> <a href="../index.html"> HOME </a> </li>
+                <li> <a href="../pages/about.html"> ABOUT </a> </li>
+                <li> <a href="../pages/instructions.html"> GAME INSTRUCTIONS </a> </li>
+                <li> <a href="../pages/credits.html"> CREDIT </a> </li>
+            </ul>
+        </nav>
+        <main>
+            <h2> Memory Cards </h2>
+            <div class="gameData">
+                <div class="label"> Score: <span id="score"> 0 </span> </div>
+                <div id="difficulty">
+                    <h3> Game Difficulty: </h3>
+                    <input type="radio" id="easy" name="difficulty" value="easy" checked> Easy
+                    <input type="radio" id="medium" name="difficulty" value="medium"> Medium
+                    <input type="radio" id="hard" name="difficulty" value="hard"> Hard
+                </div>
+                <div class="label"> Status: <span id="status"> Press Start to Begin </span> </div>
+                <button id="playButton"> Play </button>
+                <button id="restartButton"> Restart </button>
+            </div>
+            <div id="playArea">
+                <button class="card"> </button>
+                <button class="card"> </button>
+                <button class="card"> </button>
+                <button class="card"> </button>
+                <button class="card"> </button>
+                <button class="card"> </button>
+            </div>
+        </main>
+        <footer>
+            &copy 2024 Gun Wutthakul @ UC DAVIS
+        </footer>
+        <script src="memory-cards.js"> </script>
+    </body>
+</html>

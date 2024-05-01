@@ -1,16 +1,8 @@
-.game-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-}
-
 .hole {
+    background-color: #333;
     width: 100px;
     height: 100px;
-    background-color: #333;
     border-radius: 50%;
-    margin: 0 20px;
-    cursor: pointer;
 }
 
 .mole {
@@ -19,4 +11,9 @@
 
 .whacked {
     background-color: green;
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
 }
