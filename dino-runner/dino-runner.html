@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> GAME 3 Page </title>
+        <title> Dino Runner Game Page </title>
         <link href="../style.css" rel="stylesheet">
+        <link href="dino-runner.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
@@ -18,10 +19,20 @@
             </ul>
         </nav>
         <main>
-            
+            <h2> Whack-A-Mole </h2>
+            <div class="gameData">
+                <div class="label"> Time: <span id="timer"> 0 </span> seconds </div>
+                <div class="label"> Status: <span id="status"> Press Start to Begin </span> </div>
+                <button id="playButton"> Play </button>
+                <button id="restartButton"> Restart </button>
+            </div>
+            <div class="background">
+                <div class="dino"> </div>
+            </div>
         </main>
         <footer>
             &copy 2024 Gun Wutthakul @ UC DAVIS
         </footer>
+        <script src="dino-runner.js"> </script>
     </body>
 </html>

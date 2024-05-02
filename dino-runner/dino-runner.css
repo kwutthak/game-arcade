@@ -1,0 +1,35 @@
+
+
+.dino {
+    width: 60px;
+    height: 60px;
+    background-image: url(images/dino.png);
+    position: absolute;
+    bottom: 0;
+}
+
+.cactus{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    bottom: 0;    
+    background-image: url(images/cactus.png);
+}
+
+.game-over{
+    text-align: center;
+    color: #666666;
+    margin-top: 50px;
+    font-family: arial;
+}
+
+.background {
+    background: #fafafa;
+    position: absolute;
+    bottom: 0;
+    background-image: url(images/background.png);
+    background-repeat: repeat-x;
+    animation: slideright 600s infinite linear;
+    width: 100%;
+    height: 200px;
+}
