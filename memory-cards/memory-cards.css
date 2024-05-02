@@ -14,6 +14,10 @@
     pointer-events: none;
 }
 
+.unclickable {
+    pointer-events: none;
+}
+
 .hidden {
     display: none;
 }

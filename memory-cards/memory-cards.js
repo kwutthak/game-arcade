@@ -5,8 +5,8 @@ let numCards = 6;
 let resultCards = [];
 let matchingMode = false;
 let correctMatches = 0;
-let cardHolder;
-let cardHolderIndex;
+let lastCard;
+let lastCardIndex;
 const difficulties = document.getElementsByName('difficulty');
 let gameActive = false;
 let score = 0;
@@ -47,27 +47,32 @@ function setDifficulty() {
 function setCards() {
 
     for (let i = 0; i < numCards; i++) {
-        const imageIndex = resultCards.findIndex(pair => containPairs(pair, i));
-
         const container = document.createElement('div');
         container.className = 'card';
 
-        const front = document.createElement('img');
-        front.className = 'front';
-        front.src = 'images/front.png';
-        front.alt = 'Hidden';
-
-        const back = document.createElement('img');
-        back.className = 'back hidden';
-        back.src = 'images/' + imageIndex + '.png'
-        back.alt = 'Pic';
-        
-        container.appendChild(front);
-        container.appendChild(back);
+        createFrontImage(container);
+        createBackImage(container, i);
 
         document.getElementById('playArea').appendChild(container);
     }
     cards = document.querySelectorAll('.card');
+}
+
+function createFrontImage(container) {
+    let front = document.createElement('img');
+    front.className = 'front';
+    front.src = 'images/front.png';
+    front.alt = 'Hidden';
+    container.appendChild(front);
+}
+
+function createBackImage(container, i) {
+    const imageIndex = resultCards.findIndex(pair => containPairs(pair, i));
+    let back = document.createElement('img');
+    back.className = 'back hidden';
+    back.src = 'images/' + imageIndex + '.png'
+    back.alt = 'Pic';
+    container.appendChild(back);
 }
 
 function generateCards() {
@@ -118,33 +123,49 @@ function match() {
 
     if (!matchingMode) {
         matchingMode = true;
-        cardHolder = this;
-        cardHolderIndex = clickedIndex;
+        lastCard = this;
+        lastCardIndex = clickedIndex;
     } else {
         matchingMode = false;
-        const pairExists = resultCards.some(pair => arePairs(pair, clickedIndex, cardHolderIndex));
+        const pairExists = resultCards.some(pair => arePairs(pair, clickedIndex, lastCardIndex));
         if (pairExists) {
-            backImage.src = 'images/matched.png';
-            cardHolder.querySelector('.back').src = 'images/matched.png';
-
-            correctMatches++;
-            score += 100;
-            document.getElementById('score').textContent = score;
+            successfulMatch(backImage);
         } else {
-            backImage.classList.toggle('hidden');
-            frontImage.classList.toggle('hidden');
-            cardHolder.querySelector('.back').classList.toggle('hidden');
-            cardHolder.querySelector('.front').classList.toggle('hidden');
-            this.classList.remove('disabled');
-            cardHolder.classList.remove('disabled');
-
-            if (score > 0) {
-                score -= 10;
-                document.getElementById('score').textContent = score;
-            }
+            let currentCard = this;
+            failureMatch(backImage, frontImage, currentCard);
         }
     }
     checkGameOver();
+}
+
+function successfulMatch(backImage) {
+    
+    setTimeout(() => {
+        backImage.src = 'images/matched.png';
+        lastCard.querySelector('.back').src = 'images/matched.png'
+    }, 1000);
+    
+    correctMatches++;
+    score += 100;
+    document.getElementById('score').textContent = score;
+}
+
+function failureMatch(backImage, frontImage, currentCard) {
+    cards.forEach(card => card.classList.add('unclickable'));
+    setTimeout(() => {
+        backImage.classList.toggle('hidden');
+        frontImage.classList.toggle('hidden');
+        lastCard.querySelector('.back').classList.toggle('hidden');
+        lastCard.querySelector('.front').classList.toggle('hidden');
+        currentCard.classList.remove('disabled');
+        lastCard.classList.remove('disabled');
+        cards.forEach(card => card.classList.remove('unclickable'));
+    }, 1000);
+
+    if (score > 0) {
+        score -= 10;
+        document.getElementById('score').textContent = score;
+    }
 }
 
 function checkGameOver() {
