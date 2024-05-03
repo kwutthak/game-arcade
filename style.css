@@ -1,7 +1,10 @@
 body {
+    display: flex;
+    flex-direction: column;
     background-color: rgb(0, 0, 0);
     color: white;
     font-family: monospace;
+    min-height: 100vh;
 }
 
 header {
@@ -17,9 +20,20 @@ footer {
     background-color: rgba(123, 123, 123, 0.325);
     padding: 20px;
     border-radius: 10px;
+    margin-top: auto;
 }
 
-p {
+h2 {
+    text-align: center;
+    padding: 10px;
+}
+
+a {
+    color: pink;
+    text-decoration: none;
+}
+
+p, main ul, main ol {
     font-size: 15px;
     line-height: 1.5;
     margin-left: 10px;

@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.about {
+    background-color: rgba(123, 123, 123, 0.325);
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
