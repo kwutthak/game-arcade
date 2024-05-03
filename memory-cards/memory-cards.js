@@ -37,6 +37,7 @@ function setDifficulty() {
 
     if (difficulties[0].checked) {
         numCards = 6;
+        document.getElementById('playArea').style.gridTemplateColumns = 'repeat(3, 1fr)';
     } else if (difficulties[1].checked) {
         numCards = 10;
     } else if (difficulties[2].checked) {
@@ -119,12 +120,12 @@ function match() {
         backImage.classList.toggle('hidden');
         frontImage.classList.toggle('hidden');
     }
-    this.classList.add('disabled');
 
     if (!matchingMode) {
         matchingMode = true;
         lastCard = this;
         lastCardIndex = clickedIndex;
+        this.removeEventListener('click', match);
     } else {
         matchingMode = false;
         const pairExists = resultCards.some(pair => arePairs(pair, clickedIndex, lastCardIndex));
@@ -132,6 +133,7 @@ function match() {
             successfulMatch(backImage);
         } else {
             let currentCard = this;
+            lastCard.addEventListener('click', match);
             failureMatch(backImage, frontImage, currentCard);
         }
     }
@@ -139,10 +141,13 @@ function match() {
 }
 
 function successfulMatch(backImage) {
-    
+    cards.forEach(card => card.classList.add('unclickable'));
     setTimeout(() => {
         backImage.src = 'images/matched.png';
         lastCard.querySelector('.back').src = 'images/matched.png'
+        cards.forEach(card => card.classList.remove('unclickable'));
+        lastCard.removeEventListener('click', match);
+        this.removeEventListener('click', match);
     }, 1000);
     
     correctMatches++;
@@ -176,6 +181,6 @@ function checkGameOver() {
 }
 
 function disableButtons() {
-    document.getElementById('playButton').classList.add('disabled');
+    document.getElementById('playButton').disabled = true;
     difficulties.forEach(difficulty => difficulty.classList.add('disabled'));
 }

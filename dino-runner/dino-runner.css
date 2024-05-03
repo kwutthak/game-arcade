@@ -1,3 +1,27 @@
+.gameContainer {
+    display: flex;
+    width: 100%;
+    margin-top: 30px;
+    position: relative;
+}
+
+.gameData {
+    background-color: #e44c9d7b;
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.playArea {
+    background-color: #e44c9d7b;
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
 .playArea {
     display: flex;
 }
@@ -5,13 +29,14 @@
 .dino {
     width: 60px;
     height: 60px;
+    left: 530px;
     background-image: url(images/dino.png);
-    position: relative;
+    position: absolute;
     bottom: 0;
 }
 
 .cactus{
-    position: relative;
+    position: absolute;
     width: 60px;
     height: 60px;
     bottom: 0;    
@@ -26,6 +51,7 @@
 }
 
 .background {
+    position: relative;
     background: #fafafa;
     bottom: 0;
     background-image: url(images/background.png);
@@ -33,4 +59,14 @@
     animation: slideright 600s infinite linear;
     width: 100%;
     height: 200px;
+}
+
+@keyframes slideright {
+    from {
+        background-position: 70000%;
+    }
+
+    to {
+        background-position: 0;
+    }
 }

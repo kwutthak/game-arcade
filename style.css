@@ -1,7 +1,7 @@
 body {
     display: flex;
     flex-direction: column;
-    background-color: rgb(0, 0, 0);
+    background-color: #f2b2d4;
     color: white;
     font-family: monospace;
     min-height: 100vh;
@@ -10,14 +10,14 @@ body {
 header {
     text-align: center;
     font-size: larger;
-    background-color: rgba(123, 123, 123, 0.325);
+    background-color: #e44c9d7b;
     padding: 10px;
     border-radius: 10px;
 }
 
 footer {
     text-align: center;
-    background-color: rgba(123, 123, 123, 0.325);
+    background-color: #e44c9d7b;
     padding: 20px;
     border-radius: 10px;
     margin-top: auto;
@@ -29,12 +29,11 @@ h2 {
 }
 
 a {
-    color: pink;
-    text-decoration: none;
+    color: white;
 }
 
 p, main ul, main ol {
-    font-size: 15px;
+    font-size: 13px;
     line-height: 1.5;
     margin-left: 10px;
     margin-right: 10px;
@@ -53,6 +52,7 @@ nav > ul {
 
 nav > ul > li {
     display: inline;
+    font-size: 18px;
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -84,7 +84,7 @@ nav > ul a:hover {
     flex: 0 0 250px;
     align-items: center;
     flex-direction: column;
-    background-color: rgba(123, 123, 123, 0.325);
+    background-color: #e44c9d7b;
     padding: 10px;
     margin-left: 10px;
     margin-right: 10px;
@@ -105,8 +105,9 @@ nav > ul a:hover {
 }
 
 .game-card button {
-    background-color: white;
-    color: black;
+    background-color: #f2b2d4;;
+    color: white;
+    border: white;
     padding: 5px 100px;
     font-size: 16px;
     border-radius: 5px;
@@ -114,6 +115,5 @@ nav > ul a:hover {
 }
 
 .game-card button:hover {
-    filter: invert(100%);
     cursor: grab;
 }

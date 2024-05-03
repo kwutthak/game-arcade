@@ -1,16 +1,45 @@
+.gameContainer {
+    display: flex;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.gameData {
+    background-color: #e44c9d7b;
+    flex: 0 0 30%;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.playArea {
+    background-color: #e44c9d7b;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
 .hole {
-    background-color: #333;
+    background-color: white;
+    border-color: pink;
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    background-size: cover;
+    background-position: center;
 }
 
 .mole {
-    background-color: red;
+    background-image: url(images/mole.jpg);;
 }
 
 .whacked {
-    background-color: green;
+    background-image: url(images/whacked.jpg);;
 }
 
 .disabled {

@@ -3,9 +3,9 @@
 const holes = document.querySelectorAll('.hole');
 const speeds = document.getElementsByName('speed');
 let gameActive = false;
-let countdown = 10;
+let countdown = 30;
 let score = 0;
-let gameSpeed = 1000;
+let gameSpeed = 1500;
 let scoreMultiplier = 1.0;
 let timeInterval;
 let moleInterval;
@@ -33,13 +33,13 @@ function restartGame() {
 
 function setSpeed() {
     if (speeds[0].checked) {
-        gameSpeed = 1000;
+        gameSpeed = 1500;
         scoreMultiplier = 1.0;
     } else if (speeds[1].checked) {
-        gameSpeed = 750;
+        gameSpeed = 1000;
         scoreMultiplier = 1.5;
     } else if (speeds[2].checked) {
-        gameSpeed = 500;
+        gameSpeed = 750;
         scoreMultiplier = 2.0;
     }
 }
@@ -77,11 +77,11 @@ function whack() {
         document.getElementById('score').textContent = score;
         this.classList.remove('mole');
         this.classList.add('whacked');
-        setTimeout(() => this.classList.remove('whacked'), gameSpeed);
+        setTimeout(() => this.classList.remove('whacked'), 1000);
     }
 }
 
 function disableButtons() {
-    document.getElementById('playButton').classList.add('disabled');
+    document.getElementById('playButton').disabled = true;
     speeds.forEach(speed => speed.classList.add('disabled'));
 }

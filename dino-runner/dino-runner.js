@@ -1,5 +1,3 @@
-"use strict";
-
 const dino = document.querySelector('.dino');
 const background = document.querySelector('.background');
 let isJumping = false;
@@ -64,11 +62,11 @@ function jump() {
 function createCactus() {
     if (!gameOver) {
         const cactus = document.createElement('div');
-        let cactusPosition = 1020;
+        let cactusPosition = 1500;
         let randomTime = Math.random() * 6000;
 
         cactus.classList.add('cactus');
-        cactus.style.left = 1000 + 'px';
+        cactus.style.left = 1500 + 'px';
         background.appendChild(cactus);
 
         let leftInterval = setInterval(() => {
@@ -78,11 +76,12 @@ function createCactus() {
             if (cactusPosition < -60) {
                 clearInterval(leftInterval);
                 background.removeChild(cactus);
-            } else if (cactusPosition > 0 && cactusPosition < 60 && position < 60) {
+            } else if (cactusPosition > 520 && cactusPosition < 580 && position < 60) {
                 clearInterval(leftInterval);
                 clearInterval(timeInterval);
                 document.getElementById('status').textContent = 'Game Over! Your Time: ' + timer;
                 gameOver = true;
+                background.style.animation = 'none';
             } else {
                 cactusPosition -= 10;
                 cactus.style.left = cactusPosition + 'px';
