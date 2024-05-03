@@ -10,11 +10,14 @@ let scoreMultiplier = 1.0;
 let timeInterval;
 let moleInterval;
 
+/* the initial state of the game when the page finish loading */
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('playButton').addEventListener('click', startGame);
     document.getElementById('restartButton').addEventListener('click', restartGame);
 });
 
+
+/* start all the operations of the game when the user click the play button */
 function startGame() {
     if (!gameActive) {
         gameActive = true;
@@ -27,10 +30,12 @@ function startGame() {
     }
 }
 
+/* the restart button just reloads the page */
 function restartGame() {
     window.location.reload();
 }
 
+/* set the speed of which the moles appear and the score multiplier depending on the difficulty */
 function setSpeed() {
     if (speeds[0].checked) {
         gameSpeed = 1500;
@@ -44,6 +49,7 @@ function setSpeed() {
     }
 }
 
+/* update the countdown every second and ends the game after it runs out*/
 function updateCountdown() {
     countdown--;
     document.getElementById('countdown').textContent = countdown;
@@ -56,21 +62,25 @@ function updateCountdown() {
     }
 }
 
+/* generate a mole from a random hole (the interval depends on the difficulty) */
 function generateMoles() {
     let randomHole = Math.floor(Math.random() * holes.length);
     let hole = holes[randomHole];
+
     if (!hole.classList.contains('mole')) {
         hole.classList.add('mole');
         setTimeout(() => hole.classList.remove('mole'), gameSpeed);
     }
 }
 
+/* handle the removal of any leftover moles after game is over */
 function removeMoles() {
     holes.forEach(hole => {
         hole.classList.remove('mole');
     });
 }
 
+/* this function is called when the player successfully hit a mole */
 function whack() {
     if (this.classList.contains('mole')) {
         score += 100 * scoreMultiplier;
@@ -81,6 +91,7 @@ function whack() {
     }
 }
 
+/* disable the play and radio buttons to prevent unexpected behavior */
 function disableButtons() {
     document.getElementById('playButton').disabled = true;
     speeds.forEach(speed => speed.classList.add('disabled'));

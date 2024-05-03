@@ -34,7 +34,7 @@
     width: 60px;
     height: 60px;
     left: 530px;
-    background-image: url(images/dino.png);
+    background-image: url(images/dino.png); /* Image Credit: SquareSpace (https://www.pngall.com/keroppi-png/) */
     position: absolute;
     bottom: 0;
 }
@@ -44,7 +44,7 @@
     width: 60px;
     height: 60px;
     bottom: 0;    
-    background-image: url(images/cactus.png);
+    background-image: url(images/cactus.png); /* Image Credit: the original game's creator */
 }
 
 .game-over{
@@ -58,7 +58,7 @@
     position: relative;
     background: #fafafa;
     bottom: 0;
-    background-image: url(images/background.png);
+    background-image: url(images/background.png); /* Image Credit: the original game's creator */
     background-repeat: repeat-x;
     animation: slideright 600s infinite linear;
     width: 100%;
@@ -73,6 +73,7 @@
     margin-top: 20px;
 }
 
+/* slide the background to create the illusion of movements */
 @keyframes slideright {
     from {
         background-position: 70000%;

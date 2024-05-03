@@ -11,11 +11,13 @@ const difficulties = document.getElementsByName('difficulty');
 let gameActive = false;
 let score = 0;
 
+/* the initial state of the game when the page finish loading */
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('playButton').addEventListener('click', startGame);
     document.getElementById('restartButton').addEventListener('click', restartGame);
 });
 
+/* start all the operations of the game when the user click the play button */
 function startGame() {
     if (!gameActive) {
         gameActive = true;
@@ -28,10 +30,12 @@ function startGame() {
     }
 }
 
+/* the restart button just reloads the page */
 function restartGame() {
     window.location.reload();
 }
 
+/* set the number of cards depending on the difficulty level given */
 function setDifficulty() {
     document.getElementById('playArea').innerHTML = '';
 
@@ -45,37 +49,7 @@ function setDifficulty() {
     }
 }
 
-function setCards() {
-
-    for (let i = 0; i < numCards; i++) {
-        const container = document.createElement('div');
-        container.className = 'card';
-
-        createFrontImage(container);
-        createBackImage(container, i);
-
-        document.getElementById('playArea').appendChild(container);
-    }
-    cards = document.querySelectorAll('.card');
-}
-
-function createFrontImage(container) {
-    let front = document.createElement('img');
-    front.className = 'front';
-    front.src = 'images/front.jpeg';
-    front.alt = 'Hidden';
-    container.appendChild(front);
-}
-
-function createBackImage(container, i) {
-    const imageIndex = resultCards.findIndex(pair => containPairs(pair, i));
-    let back = document.createElement('img');
-    back.className = 'back hidden';
-    back.src = 'images/' + imageIndex + '.jpeg'
-    back.alt = 'Backside of a Game Card';
-    container.appendChild(back);
-}
-
+/* generate pairs of matching cards and store them in an array */
 function generateCards() {
     let newCards = [];
     for (let i = 0; i < numCards; i++) {
@@ -91,6 +65,7 @@ function generateCards() {
     }
 }
 
+/* store the matching pairs and keep track of all the cards that are already paired up */
 function storeCards(usedCards, newCards, firstCard, secondCard) {
     const pair = {first: firstCard, second: secondCard};
     resultCards.push(pair);
@@ -102,35 +77,77 @@ function storeCards(usedCards, newCards, firstCard, secondCard) {
     usedCards.push(firstCard);
 }
 
+/* arrange the cards in the gameplay area and set up front/back images accordingly */
+function setCards() {
+
+    for (let i = 0; i < numCards; i++) {
+        const container = document.createElement('div');
+        container.className = 'card';
+
+        createFrontImage(container);
+        createBackImage(container, i);
+
+        document.getElementById('playArea').appendChild(container);
+    }
+    cards = document.querySelectorAll('.card');
+}
+
+/* handle the creation of the image in front of the card (the same for all cards) */
+function createFrontImage(container) {
+    let front = document.createElement('img');
+    front.className = 'front';
+    front.src = 'images/front.jpeg';
+    front.alt = 'Hidden';
+    container.appendChild(front);
+}
+
+/* handle the creation of the image behind the card (the actual face of the cards) */
+function createBackImage(container, i) {
+    const imageIndex = resultCards.findIndex(pair => containPairs(pair, i));
+    let back = document.createElement('img');
+    back.className = 'back hidden';
+    back.src = 'images/' + imageIndex + '.jpeg'
+    back.alt = 'Backside of a Game Card';
+    container.appendChild(back);
+}
+
+/* helper function to determine if two cards belong to a matching pair */
 function arePairs(pair, card1, card2) {
     return (pair.first === card1 && pair.second === card2) || (pair.first === card2 && pair.second === card1);
 }
 
+/* helper function to determine if a card exists in a pair */
 function containPairs(pair, value) {
     return pair.first === value || pair.second === value;
 }
 
-
+/* handle all the operations when a card is clicked */
 function match() {
     const clickedIndex = Array.from(cards).indexOf(this);
     const backImage = this.querySelector('.back');
     const frontImage = this.querySelector('.front');
 
+    // switch from front image to back image
     if (backImage.classList.contains('hidden')) {
         backImage.classList.toggle('hidden');
         frontImage.classList.toggle('hidden');
     }
 
+    // only one card has been selected
     if (!matchingMode) {
         matchingMode = true;
         lastCard = this;
         lastCardIndex = clickedIndex;
         this.removeEventListener('click', match);
+
+    // two cards have been selected
     } else {
         matchingMode = false;
         const pairExists = resultCards.some(pair => arePairs(pair, clickedIndex, lastCardIndex));
+        // succesful matching
         if (pairExists) {
             successfulMatch(backImage);
+        // failure matching, try again
         } else {
             let currentCard = this;
             lastCard.addEventListener('click', match);
@@ -140,6 +157,8 @@ function match() {
     checkGameOver();
 }
 
+/* handle all operations when there's a succesful match */
+/* (disabling the cards, changing the image to indicate successful match, and updating the score) */
 function successfulMatch(backImage) {
     cards.forEach(card => card.classList.add('unclickable'));
     setTimeout(() => {
@@ -155,6 +174,8 @@ function successfulMatch(backImage) {
     document.getElementById('score').textContent = score;
 }
 
+/* handle all operations when there's a failure match */
+/* (flip the cards back to the front, and updating the score) */
 function failureMatch(backImage, frontImage, currentCard) {
     cards.forEach(card => card.classList.add('unclickable'));
     setTimeout(() => {
@@ -173,6 +194,7 @@ function failureMatch(backImage, frontImage, currentCard) {
     }
 }
 
+/* the game is over when all the cards have been successfully matched */
 function checkGameOver() {
     if (correctMatches === (numCards / 2)) {
         gameActive = false;
@@ -180,6 +202,7 @@ function checkGameOver() {
     }
 }
 
+/* disable the play and radio buttons to prevent unexpected behavior */
 function disableButtons() {
     document.getElementById('playButton').disabled = true;
     difficulties.forEach(difficulty => difficulty.classList.add('disabled'));
