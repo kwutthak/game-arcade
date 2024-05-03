@@ -1,13 +1,17 @@
+.playArea {
+    display: flex;
+}
+
 .dino {
     width: 60px;
     height: 60px;
     background-image: url(images/dino.png);
-    position: absolute;
+    position: relative;
     bottom: 0;
 }
 
 .cactus{
-    position: absolute;
+    position: relative;
     width: 60px;
     height: 60px;
     bottom: 0;    
@@ -23,7 +27,6 @@
 
 .background {
     background: #fafafa;
-    position: absolute;
     bottom: 0;
     background-image: url(images/background.png);
     background-repeat: repeat-x;

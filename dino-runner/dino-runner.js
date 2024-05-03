@@ -1,16 +1,9 @@
-"use strict";
-
-const dino = document.querySelector('.dino')
-const background = document.querySelector('.background')
+const dino = document.querySelector('.dino');
+const background = document.querySelector('.background');
 let isJumping = false;
-let canJump = true;
-let position = 0;
 let gameOver = false;
-let gameActive = false;
-let cactusInterval = null;
-let timeInterval;
-let cactusArray = [];
-let timer = 0;
+let position = 0;
+let timer  = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('playButton').addEventListener('click', startGame);
@@ -18,14 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function startGame() {
-    if (!gameOver && !gameActive) {
-        gameActive = true;
-        document.getElementById('status').textContent = 'Game In Progress';
-        timeInterval = setInterval(updateTimer, 1000);
-        createCactus();
-        document.addEventListener('keyup', handleKeyUp)
-        disableButtons();
-    }
+    document.getElementById('status').textContent = 'Game In Progress';
+    document.addEventListener('keyup', handleKeyUp);
+    timeInterval = setInterval(updateTimer, 1000);
+    createCactus();
+    disableButtons();
 }
 
 function restartGame() {
@@ -38,10 +28,8 @@ function updateTimer() {
 }
 
 function handleKeyUp(event) {
-    if (event.keyCode === 32 && !gameOver && canJump) {
+    if (event.keyCode === 32 && !isJumping && !gameOver) {
         if ("isJumping") {
-            canJump = false;
-            setTimeout(() => { canJump = true;}, 500);
             jump();
         }
     }
@@ -49,19 +37,20 @@ function handleKeyUp(event) {
 
 function jump() {
     isJumping = true;
+
     let upInterval = setInterval(() => {
         if (position >= 150) {
             clearInterval(upInterval);
 
             let downInterval = setInterval(() => {
-                if (position<= 0) {
+                if (position <= 0) {
                     clearInterval(downInterval);
                     isJumping = false;
                 } else {
                     position -= 20;
                     dino.style.bottom = position + 'px';
                 }
-            }, 20)
+            }, 20);
 
         } else {
             position += 20;
@@ -71,49 +60,36 @@ function jump() {
 }
 
 function createCactus() {
-
-    if (!gameOver && !cactusInterval) {
+    if (!gameOver) {
         const cactus = document.createElement('div');
         let cactusPosition = 1020;
         let randomTime = Math.random() * 6000;
-    
+
         cactus.classList.add('cactus');
         cactus.style.left = 1000 + 'px';
         background.appendChild(cactus);
 
-        cactusInterval = setInterval(() => {
+        let leftInterval = setInterval(() => {
             cactusPosition -= 10;
             cactus.style.left = cactusPosition + 'px';
 
             if (cactusPosition < -60) {
-                clearInterval(cactusInterval);
+                clearInterval(leftInterval);
                 background.removeChild(cactus);
-                cactusInterval = null;
             } else if (cactusPosition > 0 && cactusPosition < 60 && position < 60) {
-                clearInterval(cactusInterval);
-                gameOver = true;
-                removeCactus();
+                clearInterval(leftInterval);
                 clearInterval(timeInterval);
                 document.getElementById('status').textContent = 'Game Over! Your Time: ' + timer;
-                gameActive = false;
+                gameOver = true;
             } else {
                 cactusPosition -= 10;
                 cactus.style.left = cactusPosition + 'px';
             }
-        }, 20)
-
-        cactusArray.push(cactusInterval);
+        }, 20);
         setTimeout(createCactus, randomTime);
     }
 }
 
-function removeCactus() {
-    cactusArray.forEach(cactus => clearInterval(cactus));
-    cactusArray = [];
-}
-
-
 function disableButtons() {
-    document.getElementById('playButton').classList.add('disabled');
-    speeds.forEach(speed => speed.classList.add('disabled'));
+    document.getElementById('playButton').disabled = true;
 }
