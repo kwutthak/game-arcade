@@ -5,6 +5,9 @@
         <link href="../style.css" rel="stylesheet">
         <link href="memory-cards.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
     </head>
     <body>
         <header>
@@ -22,28 +25,35 @@
             <div class="gameContainer">
                 <div class="gameData">
                     <h2> Memory Cards </h2>
-                    <div class="label"> Score: <span id="score"> 0 </span> </div>
+                    <div class="label"> SCORE: <span id="score"> 0 </span> </div>
                     <div id="difficulty">
                         <h3> Game Difficulty: </h3>
                         <input type="radio" id="easy" name="difficulty" value="easy"> Easy
                         <input type="radio" id="medium" name="difficulty" value="medium" checked> Medium
                         <input type="radio" id="hard" name="difficulty" value="hard"> Hard
                     </div>
-                    <div class="label"> Status: <span id="status"> Press Start to Begin </span> </div>
+                    <div class="status"> STATUS: <span id="status"> Press Start to Begin </span> </div>
                     <button id="playButton"> Play </button>
                     <button id="restartButton"> Restart </button>
                 </div>
                 <div class="playArea" id="playArea">
-                    <img src="images/front.png" alt="A Card Memory" title="Memory Card">
-                    <img src="images/front.png" alt="A Card Memory" title="Memory Card">
-                    <img src="images/front.png" alt="A Card Memory" title="Memory Card">
-                    <img src="images/front.png" alt="A Card Memory" title="Memory Card">
-                    <img src="images/front.png" alt="A Card Memory" title="Memory Card">
-                    <img src="images/front.png" alt="A Card Memory" title="Memory Card">
-                    <img src="images/front.png" alt="A Card Memory" title="Memory Card">
-                    <img src="images/front.png" alt="A Card Memory" title="Memory Card">
-                    <img src="images/front.png" alt="A Card Memory" title="Memory Card">
-                    <img src="images/front.png" alt="A Card Memory" title="Memory Card">
+                    <!-- 
+                        Image Credits:
+                        1. Pinterest (https://www.pinterest.com/pin/465700417735276396/)
+                        2. Deviant Art (https://www.deviantart.com/vvednesdays/art/Little-Twin-Stars-579353014)
+                        3. Tenor (https://tenor.com/view/my-melody-nice-thumbs-up-good-job-nice-one-gif-16283349)
+                        4. Pinterest (https://www.pinterest.com/pin/pink-heart-background--163325923982571124/)
+                    -->
+                    <img src="images/front.jpeg" class="card" alt="A Memory Card " title="Memory Card">
+                    <img src="images/front.jpeg" class="card" alt="A Memory Card " title="Memory Card">
+                    <img src="images/front.jpeg" class="card" alt="A Memory Card " title="Memory Card">
+                    <img src="images/front.jpeg" class="card" alt="A Memory Card " title="Memory Card">
+                    <img src="images/front.jpeg" class="card" alt="A Memory Card " title="Memory Card">
+                    <img src="images/front.jpeg" class="card" alt="A Memory Card " title="Memory Card">
+                    <img src="images/front.jpeg" class="card" alt="A Memory Card " title="Memory Card">
+                    <img src="images/front.jpeg" class="card" alt="A Memory Card " title="Memory Card">
+                    <img src="images/front.jpeg" class="card" alt="A Memory Card " title="Memory Card">
+                    <img src="images/front.jpeg" class="card" alt="A Memory Card " title="Memory Card">
                 </div>
             </div>
         </main>

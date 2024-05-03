@@ -11,6 +11,9 @@
     box-sizing: border-box;
     border-radius: 10px;
     margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .playArea {
@@ -24,6 +27,14 @@
     border-radius: 10px;
 }
 
+.label {
+    margin-bottom: 10px;
+}
+
+.status {
+    margin-top: 20px;
+}
+
 .hole {
     background-color: white;
     border-color: pink;
@@ -34,12 +45,15 @@
     background-position: center;
 }
 
+
 .mole {
-    background-image: url(images/mole.jpg);;
+    /* Image Source: Pinterest (https://www.pinterest.es/pin/sticker-my-melody-kuromi--618541330096842303/) */
+    background-image: url(images/mole.png);;
 }
 
 .whacked {
-    background-image: url(images/whacked.jpg);;
+    /* Image Source: Sticker Mania (https://mystickermania.com/sticker-packs/anime/kuromi-crying) */
+    background-image: url(images/whacked.png);;
 }
 
 .disabled {

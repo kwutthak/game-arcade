@@ -3,8 +3,11 @@ body {
     flex-direction: column;
     background-color: #f2b2d4;
     color: white;
-    font-family: monospace;
     min-height: 100vh;
+    font-family: "Madimi One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0.5px;
 }
 
 header {
@@ -25,7 +28,7 @@ footer {
 
 h2 {
     text-align: center;
-    padding: 10px;
+    padding: 5px;
 }
 
 a {
@@ -33,7 +36,7 @@ a {
 }
 
 p, main ul, main ol {
-    font-size: 13px;
+    font-size: 18px;
     line-height: 1.5;
     margin-left: 10px;
     margin-right: 10px;
@@ -71,7 +74,7 @@ nav > ul a:hover {
     background-color: rgba(123, 123, 123, 0.325);
 }
 
-.game-collection {
+.gameCollection {
     display: flex;
     justify-content: center;
     padding: 10px;
@@ -79,7 +82,7 @@ nav > ul a:hover {
     border-radius: 10px;
 }
 
-.game-card {
+.gameCard {
     display: flex;
     flex: 0 0 250px;
     align-items: center;
@@ -91,29 +94,46 @@ nav > ul a:hover {
     border-radius: 10px;
 }
 
-.game-card img {
+.gameCard img {
     width: 200px;
     height: auto;
     margin-right: 10px;
     margin-left: 10px;
+    border-radius: 5px;
 }
 
-.game-card a {
+.gameCard a {
     margin-top: auto;
     text-align: center;
     text-decoration: none;
 }
 
-.game-card button {
+.gameCard button, .gameData button {
+    font-family: "Madimi One", sans-serif;
     background-color: #f2b2d4;;
     color: white;
     border: white;
-    padding: 5px 100px;
-    font-size: 16px;
-    border-radius: 5px;
     transition: filter 0.3s ease;
 }
 
-.game-card button:hover {
+.gameCard button {
+    padding: 5px 100px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.gameData button {
+    padding: 5px;
+    margin-top: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.gameCard button:hover, .gameData button:hover {
     cursor: grab;
+}
+
+#playButton {
+    margin-top: 30px;
 }

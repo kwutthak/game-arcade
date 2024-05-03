@@ -62,7 +62,7 @@ function setCards() {
 function createFrontImage(container) {
     let front = document.createElement('img');
     front.className = 'front';
-    front.src = 'images/front.png';
+    front.src = 'images/front.jpeg';
     front.alt = 'Hidden';
     container.appendChild(front);
 }
@@ -71,8 +71,8 @@ function createBackImage(container, i) {
     const imageIndex = resultCards.findIndex(pair => containPairs(pair, i));
     let back = document.createElement('img');
     back.className = 'back hidden';
-    back.src = 'images/' + imageIndex + '.png'
-    back.alt = 'Pic';
+    back.src = 'images/' + imageIndex + '.jpeg'
+    back.alt = 'Backside of a Game Card';
     container.appendChild(back);
 }
 
